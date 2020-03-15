@@ -24,7 +24,7 @@ public class ProjektiApplication {
 	public CommandLineRunner demo(ProjektiRepository prepository, UserRepository urepository) {
 		return(args) -> {
 
-			/*
+			
 			prepository.save(new Projekti("Voita", "500 grammaa", "3,50 euroa"));
 			prepository.save(new Projekti("Maitoa", "3 litraa", "2 euroa per tlk"));
 			prepository.save(new Projekti("Leipää", "1 kpl", "3 euroa"));
@@ -34,7 +34,7 @@ public class ProjektiApplication {
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
 			urepository.save(user1);
 			urepository.save(user2);
-*/
+
 			
 		};
 	}
