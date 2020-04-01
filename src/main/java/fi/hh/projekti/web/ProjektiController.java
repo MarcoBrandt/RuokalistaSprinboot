@@ -3,10 +3,14 @@ package fi.hh.projekti.web;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +42,7 @@ public class ProjektiController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET) 
 	public String deleteProjekti(@PathVariable("id") Long projektiId, Model model) {
+		System.out.println("Poistettu id: " + projektiId);
 		repository.deleteById(projektiId);
 		return "redirect:../projektilista";
 	}
@@ -54,8 +59,15 @@ public class ProjektiController {
     // Tallentaminen
     
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Projekti projekti){
-        repository.save(projekti);
+    public String save(@Valid Projekti projekti, BindingResult bindingResult, Model model){
+        
+        if (bindingResult.hasErrors()) {
+        	System.out.println("Virheellinen tuotelisäys");
+        	return "addprojekti";
+        }
+ 
+    	repository.save(projekti);
+    	System.out.println("Uusi tuote lisätty: " + projekti);
         return "redirect:projektilista";
     }   
 	  

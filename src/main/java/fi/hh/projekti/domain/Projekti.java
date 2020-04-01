@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Projekti {
@@ -13,8 +14,12 @@ public class Projekti {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	private String tuote, maara, hinta;
-
+	@NotBlank(message = "Virhe")
+	private String tuote;
+	@NotBlank(message = "Virhe")
+	private String maara;
+	@NotBlank(message = "Virhe")
+	private String hinta;
 
 		
 	
